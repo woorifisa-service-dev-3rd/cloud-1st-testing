@@ -2,19 +2,18 @@
 import React, { useState } from 'react';
 
 const CreateSchedule = ({ addResult }) => {
-  const [companyName, setCompanyName] = useState('');
+  const [company_name, setCompanyName] = useState('');
   const [deadline, setDeadline] = useState('');
-  const [announcementDate, setAnnouncementDate] = useState('');
-  const [resultStatus, setResultStatus] = useState('진행중'); 
+  const [result_date, setResultDate] = useState('');
+  const [result, setResult] = useState('진행중'); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newResult = {
-      id: Date.now(),
-      companyName,
+      company_name,
       deadline,
-      announcementDate,
-      resultStatus, 
+      result_date,
+      result, 
     };
     addResult(newResult);
     clearForm();
@@ -23,8 +22,8 @@ const CreateSchedule = ({ addResult }) => {
   const clearForm = () => {
     setCompanyName('');
     setDeadline('');
-    setAnnouncementDate('');
-    setResultStatus('진행중'); 
+    setResultDate('');
+    setResult('진행중'); 
   };
 
   return (
@@ -32,12 +31,12 @@ const CreateSchedule = ({ addResult }) => {
       <h2>스케줄 추가</h2>
       <div className='form_wrap'>
       <div>
-        <label htmlFor="companyName">회사명</label>
+        <label htmlFor="company_name">회사명</label>
         <input
-          id="companyName"
+          id="company_name"
           type="text"
           placeholder="회사명"
-          value={companyName}
+          value={company_name}
           onChange={(e) => setCompanyName(e.target.value)}
           required
         />
@@ -53,21 +52,21 @@ const CreateSchedule = ({ addResult }) => {
         />
       </div>
       <div>
-        <label htmlFor="announcementDate">결과 발표</label>
+        <label htmlFor="result_date">결과 발표</label>
         <input
-          id="announcementDate"
+          id="result_date"
           type="date"
-          value={announcementDate}
-          onChange={(e) => setAnnouncementDate(e.target.value)}
+          value={result_date}
+          onChange={(e) => setResultDate(e.target.value)}
           required
         />
       </div>
       <div>
-        <label htmlFor="resultStatus">결과</label>
+        <label htmlFor="result">결과</label>
         <select
-          id="resultStatus"
-          value={resultStatus}
-          onChange={(e) => setResultStatus(e.target.value)}
+          id="result"
+          value={result}
+          onChange={(e) => setResult(e.target.value)}
         >
           <option value="합격">합격</option>
           <option value="불합격">불합격</option>

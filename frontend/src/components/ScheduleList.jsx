@@ -16,10 +16,10 @@ const ScheduleList = ({ results, startEdit }) => {
       <tbody>
         {results.map(result => (
           <tr key={result.id}>
-            <td>{result.companyName}</td>
+            <td>{result.company_name}</td>
             <td>{result.deadline}</td>
-            <td>{result.announcementDate}</td>
-            <td>{result.resultStatus}</td>
+            <td>{result.result_date}</td>
+            <td>{result.result}</td>
             <td>
               <button onClick={() => startEdit(result)}>편집</button>
             </td>
