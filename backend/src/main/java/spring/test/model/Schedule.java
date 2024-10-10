@@ -1,13 +1,12 @@
 package spring.test.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import spring.test.dto.ScheduleRequestDto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+@ToString
 @Getter
 @Builder
 @AllArgsConstructor
@@ -23,10 +22,27 @@ public class Schedule {
     @Column(name = "company_name")
     private String companyName;
 
-    private LocalDate deadline;
+    private LocalDateTime deadline;
 
     @Column(name = "result_date")
-    private LocalDate resultDate;
+    private LocalDateTime resultDate;
 
+    @Convert(converter = ResultConverter.class)
     private Result result;
+
+    public static Schedule from(ScheduleRequestDto dto) {
+        return Schedule.builder()
+                .companyName(dto.getCompanyName())
+                .deadline(dto.getDeadline())
+                .resultDate(dto.getResultDate())
+                .result(dto.getResult())
+                .build();
+    }
+
+    public void update(ScheduleRequestDto dto) {
+        this.companyName = dto.getCompanyName();
+        this.deadline = dto.getDeadline();
+        this.resultDate = dto.getResultDate();
+        this.result = dto.getResult();
+    }
 }

@@ -13,4 +13,13 @@ public enum Result {
 
     private final int id;
     private final String status;
+
+    public static Result fromId(int id) {
+        for (Result result : Result.values()) {
+            if (result.getId() == id) {
+                return result;
+            }
+        }
+        throw new IllegalArgumentException("Invalid Result id: " + id);
+    }
 }
