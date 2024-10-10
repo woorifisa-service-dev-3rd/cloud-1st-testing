@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Builder
@@ -23,10 +23,10 @@ public class Schedule {
     @Column(name = "company_name")
     private String companyName;
 
-    private LocalDate deadline;
+    private LocalDateTime deadline;
 
     @Column(name = "result_date")
-    private LocalDate resultDate;
+    private LocalDateTime resultDate;
 
     private Result result;
 }
