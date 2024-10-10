@@ -30,6 +30,7 @@ const CreateSchedule = ({ addResult }) => {
   return (
     <form onSubmit={handleSubmit}>
       <h2>스케줄 추가</h2>
+      <div className='form_wrap'>
       <div>
         <label htmlFor="companyName">회사명</label>
         <input
@@ -73,7 +74,10 @@ const CreateSchedule = ({ addResult }) => {
           <option value="진행중">진행중</option>
         </select>
       </div>
+      <div className='button_wrap'>
       <button type="submit">추가</button>
+      </div>
+      </div>
     </form>
   );
 };
