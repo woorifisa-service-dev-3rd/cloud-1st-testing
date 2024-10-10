@@ -26,8 +26,10 @@ public class ScheduleController {
     }
 
     @PostMapping
-    public ResponseEntity<ScheduleResponseDto> addSechdule(@RequestBody ScheduleRequestDto scheduleRequestDto) {
+    public ResponseEntity<ScheduleResponseDto> addSchedule(@RequestBody ScheduleRequestDto scheduleRequestDto) { // 스케줄 추가
 
-        return null;
+        ScheduleResponseDto save = scheduleService.save(scheduleRequestDto);
+
+        return new ResponseEntity<>(save, HttpStatus.CREATED);
     }
 }

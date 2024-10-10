@@ -2,6 +2,7 @@ package spring.test.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import spring.test.dto.ScheduleRequestDto;
 import spring.test.dto.ScheduleResponseDto;
 import spring.test.model.Schedule;
 import spring.test.repository.ScheduleRepository;
@@ -21,5 +22,12 @@ public class ScheduleService {
                 .stream()
                 .map(ScheduleResponseDto::from)
                 .collect(Collectors.toList());
+    }
+
+    public ScheduleResponseDto save(ScheduleRequestDto scheduleRequestDto) {
+
+        Schedule save = scheduleRepository.save(Schedule.from(scheduleRequestDto));
+
+        return ScheduleResponseDto.from(save);
     }
 }

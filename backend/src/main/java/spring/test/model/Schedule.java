@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import spring.test.dto.ScheduleRequestDto;
 
 import java.time.LocalDateTime;
 
@@ -29,4 +30,13 @@ public class Schedule {
     private LocalDateTime resultDate;
 
     private Result result;
+
+    public static Schedule from(ScheduleRequestDto dto) {
+        return Schedule.builder()
+                .companyName(dto.getCompanyName())
+                .deadline(dto.getDeadline())
+                .resultDate(dto.getResultDate())
+                .result(dto.getResult())
+                .build();
+    }
 }
