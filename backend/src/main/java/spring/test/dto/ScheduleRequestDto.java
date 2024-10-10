@@ -22,12 +22,12 @@ public class ScheduleRequestDto {
             @JsonProperty("company_name") String companyName,
             @JsonProperty("deadline") LocalDateTime deadline,
             @JsonProperty("result_date") LocalDateTime resultDate,
-            @JsonProperty("result") Result result) {
+            @JsonProperty("result") int result) {
         return ScheduleRequestDto.builder()
                 .companyName(companyName)
                 .deadline(deadline)
                 .resultDate(resultDate)
-                .result(result)
+                .result(Result.fromId(result))
                 .build();
     }
 }

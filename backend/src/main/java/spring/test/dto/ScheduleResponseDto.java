@@ -1,11 +1,12 @@
 package spring.test.dto;
 
 import lombok.Builder;
-import spring.test.model.Result;
+import lombok.Getter;
 import spring.test.model.Schedule;
 
 import java.time.LocalDateTime;
 
+@Getter
 @Builder
 public class ScheduleResponseDto {
 
@@ -13,7 +14,7 @@ public class ScheduleResponseDto {
     private String companyName;
     private LocalDateTime deadline;
     private LocalDateTime resultDate;
-    private Result result;
+    private String result;
 
     public static ScheduleResponseDto from(Schedule schedule) {
 
@@ -22,7 +23,7 @@ public class ScheduleResponseDto {
                 .companyName(schedule.getCompanyName())
                 .deadline(schedule.getDeadline())
                 .resultDate(schedule.getResultDate())
-                .result(schedule.getResult())
+                .result(schedule.getResult().getStatus())
                 .build();
     }
 }

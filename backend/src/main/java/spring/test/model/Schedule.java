@@ -1,14 +1,12 @@
 package spring.test.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import spring.test.dto.ScheduleRequestDto;
 
 import java.time.LocalDateTime;
 
+@ToString
 @Getter
 @Builder
 @AllArgsConstructor
@@ -29,6 +27,7 @@ public class Schedule {
     @Column(name = "result_date")
     private LocalDateTime resultDate;
 
+    @Convert(converter = ResultConverter.class)
     private Result result;
 
     public static Schedule from(ScheduleRequestDto dto) {
@@ -38,5 +37,12 @@ public class Schedule {
                 .resultDate(dto.getResultDate())
                 .result(dto.getResult())
                 .build();
+    }
+
+    public void update(ScheduleRequestDto dto) {
+        this.companyName = dto.getCompanyName();
+        this.deadline = dto.getDeadline();
+        this.resultDate = dto.getResultDate();
+        this.result = dto.getResult();
     }
 }

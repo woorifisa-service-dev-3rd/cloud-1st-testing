@@ -32,4 +32,13 @@ public class ScheduleController {
 
         return new ResponseEntity<>(save, HttpStatus.CREATED);
     }
+
+    @PostMapping("/{id}")
+    public ResponseEntity<ScheduleResponseDto>
+        updateSchedule(@PathVariable Long id, @RequestBody ScheduleRequestDto scheduleRequestDto) { // 스케줄 업데이트
+
+        ScheduleResponseDto updated = scheduleService.update(id, scheduleRequestDto);
+
+        return new ResponseEntity<>(updated, HttpStatus.OK);
+    }
 }
