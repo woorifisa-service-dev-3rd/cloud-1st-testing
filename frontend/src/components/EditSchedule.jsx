@@ -11,22 +11,22 @@ const EditSchedule = ({ result, updateResult }) => {
 
   useEffect(() => {
     setCompanyName(result.company_name);
-    setScheduleResult(result.result);
     setDeadline(result.deadline);
-    setResultDate(result.result_date)
+    setResultDate(result.result_date);
+    setScheduleResult(result.result);
   },[result])
 
     // 결과 값을 숫자로 변환하는 함수
     const convertResultToNumber = (result) => {
-      console.log('result', result);
+      console.log('결과 값을 숫자로 변환', result);
       
       switch (result) {
-        case '진행중':
-          return 1;
-        case '합격':
-          return 2;
-        case '불합격':
+        case '진행 중':
           return 3;
+        case '합격':
+          return 1;
+        case '불합격':
+          return 2;
         default:
           return null;
       }
@@ -89,7 +89,7 @@ const EditSchedule = ({ result, updateResult }) => {
           >
             <option value="합격">합격</option>
             <option value="불합격">불합격</option>
-            <option value="진행중">진행중</option>
+            <option value="진행 중">진행 중</option>
           </select>
         </div>
         <div className="button_wrap">

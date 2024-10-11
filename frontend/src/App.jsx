@@ -20,9 +20,7 @@ const App = () => {
         if (!response.ok) {
           throw new Error("네트워크 응답이 좋지 않습니다.");
         }
-        const data = await response.json();
-        console.log(data);
-        
+        const data = await response.json();        
         setResults(data);
       } catch {
         console.error("데이터 가져오는 중 오류 발생");
@@ -37,9 +35,7 @@ const App = () => {
     deadline,
     result_date,
     result,
-  }) => {
-    console.log(company_name, deadline, result_date, result);
-    
+  }) => { 
     const formatDate = (date) => {
       const d = new Date(date);
       const year = d.getFullYear();
@@ -61,15 +57,13 @@ const App = () => {
         },
         body: JSON.stringify({
           company_name,
-          deadline: formattedDeadline,  // 올바른 필드 이름으로 수정
-          result_date: formattedResultDate, // 올바른 필드 이름으로 수정
+          deadline: formattedDeadline,  
+          result_date: formattedResultDate,
           result,
         }),
       });
   
-      const newResult = await response.json(); // 응답 본문을 JSON으로 변환
-      console.log(newResult);
-      
+      const newResult = await response.json();   
       setResults([...results, newResult]);
     } catch (error) {
       console.error("데이터 추가 중 오류 발생:", error);
@@ -79,7 +73,7 @@ const App = () => {
 
 
 const updateResultHandler = async (updatedResult) => {
-    // 날짜를 'yyyy-MM-dd HH:mm' 형식으로 변환
+  
     const formatDate = (date) => {
       const d = new Date(date);
       const year = d.getFullYear();
@@ -128,7 +122,7 @@ const updateResultHandler = async (updatedResult) => {
   }
 };
 
-  const startEdit = (result) => {
+  const startEdit = (result) => {  
     setEditResult(result);
   };
 
