@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const CreateSchedule = ({ addResult }) => {
   const [company_name, setCompanyName] = useState('');
   const [deadline, setDeadline] = useState('');
   const [result_date, setResultDate] = useState('');
-  const [result, setResult] = useState(1); // 초기값을 1로 설정 (진행중)
-
-
+  const [result, setResult] = useState(3); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,17 +22,17 @@ const CreateSchedule = ({ addResult }) => {
     setCompanyName('');
     setDeadline('');
     setResultDate('');
-    setResult(1); 
+    setResult(3); 
   };
 
   const handleResultChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value; 
     if (value === "합격") {
-      setResult(2);
+      setResult(1);
     } else if (value === "불합격") {
-      setResult(3);
+      setResult(2);
     } else {
-      setResult(1); 
+      setResult(3); 
     }
   };
 
@@ -77,10 +75,10 @@ const CreateSchedule = ({ addResult }) => {
           <label htmlFor="result">결과</label>
           <select
             id="result"
-            value={result === 1 ? "진행중" : result === 2 ? "합격" : "불합격"} 
+            value={result === 1 ? "합격" : result === 2 ? "불합격" : "진행 중"} 
             onChange={handleResultChange} 
           >
-            <option value="진행중">진행중</option>
+            <option value="진행 중">진행 중</option>
             <option value="합격">합격</option>
             <option value="불합격">불합격</option>
           </select>
