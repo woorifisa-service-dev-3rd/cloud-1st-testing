@@ -2,6 +2,8 @@
 import React from 'react';
 
 const ScheduleList = ({ results, startEdit }) => { 
+  
+  
   return (
     <table>
       <thead>

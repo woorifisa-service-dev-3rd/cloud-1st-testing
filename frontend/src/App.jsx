@@ -21,6 +21,8 @@ const App = () => {
           throw new Error("네트워크 응답이 좋지 않습니다.");
         }
         const data = await response.json();
+        console.log(data);
+        
         setResults(data);
       } catch {
         console.error("데이터 가져오는 중 오류 발생");

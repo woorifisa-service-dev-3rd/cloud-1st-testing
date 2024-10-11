@@ -18,7 +18,7 @@ const EditSchedule = ({ result, updateResult }) => {
 
     // 결과 값을 숫자로 변환하는 함수
     const convertResultToNumber = (result) => {
-      console.log(result);
+      console.log('result', result);
       
       switch (result) {
         case '진행중':
@@ -40,7 +40,7 @@ const EditSchedule = ({ result, updateResult }) => {
       company_name,
       deadline,
       result_date,
-      result: convertResultToNumber(scheduleResult), // 변환된 숫자 사용
+      result: convertResultToNumber(scheduleResult), 
     };
     updateResult(updatedResult);
   };

@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const CreateSchedule = ({ addResult }) => {
   const [company_name, setCompanyName] = useState('');
   const [deadline, setDeadline] = useState('');
   const [result_date, setResultDate] = useState('');
-  const [result, setResult] = useState(1); // 초기값을 1로 설정 (진행중)
-
-
+  const [result, setResult] = useState(1); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,7 +26,7 @@ const CreateSchedule = ({ addResult }) => {
   };
 
   const handleResultChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value; 
     if (value === "합격") {
       setResult(2);
     } else if (value === "불합격") {
