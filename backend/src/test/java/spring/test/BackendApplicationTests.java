@@ -26,7 +26,6 @@ class BackendApplicationTests {
 
 	@Test
 	void 전체_조회_아이디_1_일치() {
-
 		RestAssured
 				.given()
 				.when()
