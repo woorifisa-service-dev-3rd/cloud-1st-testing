@@ -8,7 +8,7 @@ class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {
-		System.out.println("hello");
+		System.out.println("hi");
 	}
 
 }
