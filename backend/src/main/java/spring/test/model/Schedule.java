@@ -38,7 +38,7 @@ public class Schedule {
                 .companyName(dto.getCompanyName())
                 .deadline(dto.getDeadline())
                 .resultDate(dto.getResultDate())
-                .result(dto.getResult())
+                .result(Result.fromId(dto.getResult()))
                 .build();
     }
 
@@ -46,6 +46,6 @@ public class Schedule {
         this.companyName = dto.getCompanyName();
         this.deadline = dto.getDeadline();
         this.resultDate = dto.getResultDate();
-        this.result = dto.getResult();
+        this.result = Result.fromId(dto.getResult());
     }
 }

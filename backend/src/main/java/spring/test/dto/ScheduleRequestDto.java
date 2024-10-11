@@ -17,7 +17,7 @@ public class ScheduleRequestDto {
     private String companyName;
     private LocalDateTime deadline;
     private LocalDateTime resultDate;
-    private Result result;
+    private int result;
 
     @JsonCreator
     public static ScheduleRequestDto create(
@@ -36,7 +36,7 @@ public class ScheduleRequestDto {
                 .companyName(companyName)
                 .deadline(deadline)
                 .resultDate(resultDate)
-                .result(Result.fromId(result))
+                .result(result)
                 .build();
     }
 }
