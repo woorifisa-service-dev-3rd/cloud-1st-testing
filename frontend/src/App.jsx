@@ -7,7 +7,7 @@ import ScheduleList from "./components/ScheduleList";
 const App = () => {
   const [results, setResults] = useState([]);
   const [editResult, setEditResult] = useState(null);
-
+// 서류 update
   useEffect(() => {
     const getSchedule = async () => {
       try {
@@ -29,30 +29,68 @@ const App = () => {
     getSchedule();
   }, []);
 
+  //서류추가
   const addResult = async ({
     company_name,
     deadline,
     result_date,
     result,
   }) => {
+    console.log(company_name, deadline, result_date, result);
+    
+    const formatDate = (date) => {
+      const d = new Date(date);
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      const hours = String(d.getHours()).padStart(2, '0');
+      const minutes = String(d.getMinutes()).padStart(2, '0');
+      return `${year}-${month}-${day} ${hours}:${minutes}`;
+    };
+  
+    const formattedDeadline = formatDate(deadline);
+    const formattedResultDate = formatDate(result_date);
+  
     try {
       const response = await fetch("http://localhost:8080/api/schedule", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           company_name,
-          deadline,
-          result_date,
+          deadline: formattedDeadline,  // 올바른 필드 이름으로 수정
+          result_date: formattedResultDate, // 올바른 필드 이름으로 수정
           result,
         }),
       });
-      setResults([...results, response]);
+  
+      const newResult = await response.json(); // 응답 본문을 JSON으로 변환
+      console.log(newResult);
+      
+      setResults([...results, newResult]);
     } catch (error) {
-      console.error("데이터 가져오는 중 오류 발생");
+      console.error("데이터 추가 중 오류 발생:", error);
     }
   };
+  
 
-// Result 수정 기능, 파라미터로 업데이트할 Result 객체를 받음
+
 const updateResultHandler = async (updatedResult) => {
+    // 날짜를 'yyyy-MM-dd HH:mm' 형식으로 변환
+    const formatDate = (date) => {
+      const d = new Date(date);
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      const hours = String(d.getHours()).padStart(2, '0');
+      const minutes = String(d.getMinutes()).padStart(2, '0');
+      return `${year}-${month}-${day} ${hours}:${minutes}`;
+    };
+
+    const formattedDeadline = formatDate(updatedResult.deadline);
+    const formattedResultDate = formatDate(updatedResult.result_date);
+  
   try {
     const response = await fetch(
       `http://localhost:8080/api/schedule/${updatedResult.id}`,
@@ -63,9 +101,9 @@ const updateResultHandler = async (updatedResult) => {
         },
         body: JSON.stringify({
           company_name: updatedResult.company_name,
-          deadline: updatedResult.deadline,
-          result_date: updatedResult.result_date,
-          result: updatedResult.result,
+          deadline: formattedDeadline,
+          result_date: formattedResultDate,
+          result: updatedResult.result, 
         }),
       }
     );
@@ -81,7 +119,8 @@ const updateResultHandler = async (updatedResult) => {
       result.id === newUpdatedResult.id ? newUpdatedResult : result
     );
 
-    setEditResult(updatedResults); // 수정 후 편집 상태 초기화
+    setResults(updatedResults); // results 상태를 업데이트하여 UI에 반영
+    setEditResult(null); // 수정 후 편집 상태 초기화
   } catch (error) {
     console.error('업데이트중 오류발생', error);
   }

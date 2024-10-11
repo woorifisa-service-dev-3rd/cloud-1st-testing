@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react";
 
 const EditSchedule = ({ result, updateResult }) => {
-  console.log(result);
-  
   const [company_name, setCompanyName] = useState(result.company_name);
   const [deadline, setDeadline] = useState(result.deadline);
   const [result_date, setResultDate] = useState(
@@ -14,8 +12,25 @@ const EditSchedule = ({ result, updateResult }) => {
   useEffect(() => {
     setCompanyName(result.company_name);
     setScheduleResult(result.result);
+    setDeadline(result.deadline);
+    setResultDate(result.result_date)
   },[result])
 
+    // 결과 값을 숫자로 변환하는 함수
+    const convertResultToNumber = (result) => {
+      console.log(result);
+      
+      switch (result) {
+        case '진행중':
+          return 1;
+        case '합격':
+          return 2;
+        case '불합격':
+          return 3;
+        default:
+          return null;
+      }
+    };
   
 
   const handleSubmit = (e) => {
@@ -25,10 +40,11 @@ const EditSchedule = ({ result, updateResult }) => {
       company_name,
       deadline,
       result_date,
-      result: scheduleResult,
+      result: convertResultToNumber(scheduleResult), // 변환된 숫자 사용
     };
     updateResult(updatedResult);
   };
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -48,7 +64,7 @@ const EditSchedule = ({ result, updateResult }) => {
           <label htmlFor="deadline">서류지원 마감</label>
           <input
             id="deadline"
-            type="date"
+            type="datetime-local"
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
             required
@@ -58,7 +74,7 @@ const EditSchedule = ({ result, updateResult }) => {
           <label htmlFor="result_date">결과 발표</label>
           <input
             id="result_date"
-            type="date"
+            type="datetime-local"
             value={result_date}
             onChange={(e) => setResultDate(e.target.value)}
             required

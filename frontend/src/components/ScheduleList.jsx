@@ -1,7 +1,7 @@
 // ResultTable.js
 import React from 'react';
 
-const ScheduleList = ({ results, startEdit }) => {
+const ScheduleList = ({ results, startEdit }) => { 
   return (
     <table>
       <thead>
