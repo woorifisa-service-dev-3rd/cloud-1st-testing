@@ -2,6 +2,7 @@ package spring.test.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import spring.test.dto.ScheduleRequestDto;
 
 import java.time.LocalDateTime;
@@ -22,9 +23,11 @@ public class Schedule {
     @Column(name = "company_name")
     private String companyName;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime deadline;
 
     @Column(name = "result_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime resultDate;
 
     @Convert(converter = ResultConverter.class)
@@ -35,7 +38,7 @@ public class Schedule {
                 .companyName(dto.getCompanyName())
                 .deadline(dto.getDeadline())
                 .resultDate(dto.getResultDate())
-                .result(dto.getResult())
+                .result(Result.fromId(dto.getResult()))
                 .build();
     }
 
@@ -43,6 +46,6 @@ public class Schedule {
         this.companyName = dto.getCompanyName();
         this.deadline = dto.getDeadline();
         this.resultDate = dto.getResultDate();
-        this.result = dto.getResult();
+        this.result = Result.fromId(dto.getResult());
     }
 }

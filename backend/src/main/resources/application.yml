@@ -8,6 +8,5 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
-
-    jackson:
-      property-naming-strategy: SNAKE_CASE
+  jackson:
+    property-naming-strategy: SNAKE_CASE
