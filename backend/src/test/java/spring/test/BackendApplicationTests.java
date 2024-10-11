@@ -37,7 +37,6 @@ class BackendApplicationTests {
 
 	@Test
 	void 스케줄_업데이트() {
-
 		ScheduleRequestDto dto = ScheduleRequestDto.builder()
 									.companyName("KT")
 									.deadline(LocalDateTime.parse("2024-09-22T09:00:00"))
