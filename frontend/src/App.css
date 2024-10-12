@@ -99,6 +99,7 @@ table tr:nth-child(even) {
 
 
 table button {
+  margin-top: 5px;
   background-color: #0d4750;
   padding: 5px 10px;
   border: none;

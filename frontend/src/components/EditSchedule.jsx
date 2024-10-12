@@ -9,6 +9,7 @@ const EditSchedule = ({ result, updateResult }) => {
   );
   const [scheduleResult, setScheduleResult] = useState(result.result); 
 
+  //값이 바꿀 때 리로드해서 바뀐값 반영할 수 있도록 하기 
   useEffect(() => {
     setCompanyName(result.company_name);
     setDeadline(result.deadline);
@@ -16,16 +17,14 @@ const EditSchedule = ({ result, updateResult }) => {
     setScheduleResult(result.result);
   },[result])
 
-    // 결과 값을 숫자로 변환하는 함수
-    const convertResultToNumber = (result) => {
-      console.log('결과 값을 숫자로 변환', result);
-      
+    // 결과 값을 숫자로 변환
+    const convertStrToNum = (result) => {
       switch (result) {
-        case '진행 중':
+        case "진행 중":
           return 3;
-        case '합격':
+        case "합격":
           return 1;
-        case '불합격':
+        case "불합격":
           return 2;
         default:
           return null;
@@ -36,11 +35,11 @@ const EditSchedule = ({ result, updateResult }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const updatedResult = {
-      ...result,
+      id:result.id,
       company_name,
       deadline,
       result_date,
-      result: convertResultToNumber(scheduleResult), 
+      result: convertStrToNum(scheduleResult), 
     };
     updateResult(updatedResult);
   };

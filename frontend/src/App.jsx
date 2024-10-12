@@ -3,11 +3,13 @@ import React, { useEffect, useState } from "react";
 import CreateSchedule from "./components/CreateSchedule";
 import EditSchedule from "./components/EditSchedule";
 import ScheduleList from "./components/ScheduleList";
+import Count from "./components/Count";
 
 const App = () => {
   const [results, setResults] = useState([]);
   const [editResult, setEditResult] = useState(null);
 
+  //스케줄 조회
   useEffect(() => {
     const getSchedule = async () => {
       try {
@@ -54,8 +56,10 @@ const App = () => {
 
   //스케줄 update
   const updateResultHandler = async (updatedResult) => {
+    console.log(updatedResult);
+    
     try {
-      const response = await fetch(
+      const reponse = await fetch(
         `http://localhost:8080/api/schedule/${updatedResult.id}`,
         {
           method: "POST",
@@ -69,22 +73,17 @@ const App = () => {
             result: updatedResult.result,
           }),
         }
-      );
-
-      if (!response.ok) {
-        throw new Error("네트워크 응답이 좋지 않습니다.");
-      }
-
-      const newUpdatedResult = await response.json();
-
-      const updatedResults = results.map((result) =>
+      ); 
+      const newUpdatedResult = await reponse.json();
+      const updatedResults = results.map((result) => 
         result.id === newUpdatedResult.id ? newUpdatedResult : result
-      );
-
+      )
       setResults(updatedResults);
       setEditResult(null);
+      
     } catch (error) {
-      console.error("업데이트중 오류발생", error);
+      console.error("업데이트 중 오류 발생",error);
+      
     }
   };
 
@@ -101,6 +100,7 @@ const App = () => {
         <EditSchedule result={editResult} updateResult={updateResultHandler} />
       )}
       <ScheduleList results={results} startEdit={startEdit} />
+      <Count/>
     </div>
   );
 };

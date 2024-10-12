@@ -6,13 +6,13 @@ const ScheduleList = ({ results, startEdit }) => {
   const getResultStyle = (result) => {
     switch (result) {
       case "합격":
-        return { color: "blue" }; // 파란색
+        return { color: "blue" }; 
       case "불합격":
-        return { color: "red" }; // 빨간색
+        return { color: "red" }; 
       case "진행중":
-        return { color: "black" }; // 연두색
+        return { color: "black" }; 
       default:
-        return {}; // 기본 스타일
+        return {};
     }
   };
 
