@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import CreateSchedule from "./components/CreateSchedule";
 import EditSchedule from "./components/EditSchedule";
 import ScheduleList from "./components/ScheduleList";
-import Count from "./components/Count";
 
 const App = () => {
   const [results, setResults] = useState([]);
@@ -59,7 +58,7 @@ const App = () => {
     console.log(updatedResult);
     
     try {
-      const reponse = await fetch(
+      const response = await fetch(
         `http://localhost:8080/api/schedule/${updatedResult.id}`,
         {
           method: "POST",
@@ -74,7 +73,7 @@ const App = () => {
           }),
         }
       ); 
-      const newUpdatedResult = await reponse.json();
+      const newUpdatedResult = await response.json();
       const updatedResults = results.map((result) => 
         result.id === newUpdatedResult.id ? newUpdatedResult : result
       )
@@ -100,7 +99,6 @@ const App = () => {
         <EditSchedule result={editResult} updateResult={updateResultHandler} />
       )}
       <ScheduleList results={results} startEdit={startEdit} />
-      <Count/>
     </div>
   );
 };

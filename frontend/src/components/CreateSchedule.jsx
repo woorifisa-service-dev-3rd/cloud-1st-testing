@@ -90,7 +90,7 @@ const CreateSchedule = ({ addResult }) => {
         <div className="button_wrap">
           <button type="submit" data-testid="submit-button">
             추가
-          </button>{" "}
+          </button>
         </div>
       </div>
     </form>
