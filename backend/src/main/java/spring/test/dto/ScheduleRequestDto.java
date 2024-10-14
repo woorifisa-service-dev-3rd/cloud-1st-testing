@@ -22,12 +22,10 @@ public class ScheduleRequestDto {
     @JsonCreator
     public static ScheduleRequestDto create(
             @JsonProperty("company_name") String companyName,
-            @JsonProperty("deadline")
 
-            @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
+            @JsonProperty("deadline")
             LocalDateTime deadline,
 
-            @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
             @JsonProperty("result_date")
             LocalDateTime resultDate,
 
